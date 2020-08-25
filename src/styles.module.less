@@ -1,0 +1,113 @@
+/* add css module styles here (optional) */
+
+@icon: white;
+@dark-grey: hsl(217, 19%, 35%);
+@dark-blue: hsl(214, 17%, 51%);
+@grey-blue: hsl(212, 23%, 69%);
+@light-grey: hsl(206, 12%, 76%);
+
+.share {
+  position: absolute;
+  right: 5px;
+  background-color: @light-grey;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+
+  transition: ease-in-out all 0.2s;
+  .shareIcon {
+    fill: @dark-blue;
+    transition: ease-in-out all 0.2s;
+  }
+
+  outline: none;
+  border: none;
+
+  .popup {
+    display: none;
+  }
+
+  &:focus,
+  &:hover {
+    background-color: @dark-blue;
+
+    .shareIcon {
+      fill: @icon;
+    }
+
+    .popup {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      color: @icon;
+
+      position: absolute;
+      z-index: 2;
+      border-radius: 10px;
+      box-sizing: border-box;
+      height: 60px;
+      max-width: 250px;
+      bottom: 150%;
+      left: 50%;
+      padding-right: 10px;
+      padding-left: 10px;
+      background-color: @dark-grey;
+
+      box-shadow: 0px 0px 50px 2px @light-grey;
+
+      animation-name: FadeInTooltip;
+      animation-duration: 0.25s;
+      animation-timing-function: cubic-bezier(0.7, 1.5, 0.78, 1.5);
+      animation-fill-mode: both;
+
+      &::after {
+        content: ' ';
+        position: absolute;
+        top: 99%;
+        left: 50%;
+        margin-left: -15px;
+        border-width: 15px;
+        border-style: solid;
+        border-color: @dark-grey transparent transparent transparent;
+      }
+
+      .icons {
+        max-width: 70%;
+
+        display: flex;
+        align-items: center;
+
+        justify-content: space-between;
+
+        > * {
+          fill: @icon;
+          margin-left: 2.5px;
+          margin-right: 2.5px;
+
+          transition: all 0.2s cubic-bezier(0.7, 1.5, 0.78, 1.5);
+
+          &:hover {
+            transform: scale(1.2);
+          }
+        }
+      }
+
+      span {
+        letter-spacing: 3px;
+        margin-right: 10px;
+      }
+    }
+    @keyframes FadeInTooltip {
+      from {
+        transform: translateY(10px) translateX(-50%);
+
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0px) translateX(-50%);
+        opacity: 1;
+      }
+    }
+  }
+}
