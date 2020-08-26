@@ -1,12 +1,11 @@
-import * as React from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 
 import styles from './styles.module.less';
-import { NamedExoticComponent, useEffect, useState } from 'react';
 import SocialsIcon from './components/Icons';
 import Icons from './images/SocialsIcons';
+import { apiClient } from './api';
 
-interface Props {
+type Props = {
   apiKey?: string;
   twitter?: true;
   facebook?: true;
@@ -14,37 +13,49 @@ interface Props {
   facebookMessenger?: true;
   linkedin?: true;
   reddit?: true;
-}
+};
 
-export const ExampleComponent: NamedExoticComponent<Props> = React.memo(
+export const ShareButton: React.NamedExoticComponent<Props> = React.memo(
   ({ apiKey, children, ...sites }) => {
     const [socialMedia, setSocialMedia] = useState<Record<string, string>>({});
-    const [options, setOptions] = useState<string[]>([]);
+    const [, setOptions] = useState<Record<string, string>>({});
 
     useEffect(() => {
-      setOptions(Object.keys(sites).filter(site => sites[site]));
+      let urls: Record<string, string> = {};
 
-      if (options.length) {
-        setOptions(Object.keys(sites));
+      const currentLocation = window.location.href;
+
+      for (let site in sites) {
+        urls[site] = currentLocation;
       }
-    }, []);
 
-    useEffect(() => {
+      if (!Object.keys(urls).length) {
+        urls = {
+          twitter: currentLocation,
+          facebook: currentLocation,
+          pinterest: currentLocation,
+          facebookMessenger: currentLocation,
+          linkedin: currentLocation,
+          reddit: currentLocation,
+        };
+      }
+
+      setOptions(urls);
       (async () => {
-        const { data } = await axios.get<Record<keyof typeof sites, string>>(
-          'apiendpoint'
-        );
+        const { data } = await apiClient.post<
+          Record<keyof typeof sites, string>
+        >('/', urls);
         setSocialMedia(data);
       })();
-    }, [window.location]);
+    }, [window.location.href]);
 
     return (
       <button className={styles.share}>
         <div className={styles.popup}>
           <span className={styles.popuptext}>SHARE</span>
           <div className={styles.icons}>
-            {Object.keys(socialMedia).map(site => (
-              <SocialsIcon site={site} link={'http://google.com'} />
+            {Object.keys(socialMedia).map((site, i) => (
+              <SocialsIcon site={site} link={socialMedia[site]} key={i} />
             ))}
           </div>
         </div>

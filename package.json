@@ -1,10 +1,10 @@
 {
   "name": "share-button",
   "version": "1.0.0",
-  "description": "Share the current page to social media with a zero-configuration drop in react component",
+  "description": "Share the current page to social media with a zero-configuration drop-in React component",
   "author": "saulmaldonado",
   "license": "MIT",
-  "repository": "saulmaldonado/share-button",
+  "repository": "https://github.com/saulmaldonado/share-button",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.tsx",

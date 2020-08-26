@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 
-import { ExampleComponent } from 'share-button'
-import 'share-button/dist/index.css'
+import { ShareButton } from 'share-button';
+import 'share-button/dist/index.css';
 
 const App = () => {
-  return <ExampleComponent text="Create React Library Example 😄" />
-}
+  return <ShareButton />;
+};
 
-export default App
+export default App;
