@@ -18,7 +18,6 @@ type Props = {
 export const ShareButton: React.NamedExoticComponent<Props> = React.memo(
   ({ apiKey, children, ...sites }) => {
     const [socialMedia, setSocialMedia] = useState<Record<string, string>>({});
-    const [, setOptions] = useState<Record<string, string>>({});
 
     useEffect(() => {
       let urls: Record<string, string> = {};
@@ -40,7 +39,6 @@ export const ShareButton: React.NamedExoticComponent<Props> = React.memo(
         };
       }
 
-      setOptions(urls);
       (async () => {
         const { data } = await apiClient.post<
           Record<keyof typeof sites, string>
