@@ -52,9 +52,11 @@ export const ShareButton: React.NamedExoticComponent<Props> = React.memo(
         <div className={styles.popup}>
           <span className={styles.popuptext}>SHARE</span>
           <div className={styles.icons}>
-            {Object.keys(socialMedia).map((site, i) => (
-              <SocialsIcon site={site} link={socialMedia[site]} key={i} />
-            ))}
+            {Object.keys(socialMedia)
+              .filter(site => !!socialMedia[site])
+              .map((site, i) => (
+                <SocialsIcon site={site} link={socialMedia[site]} key={i} />
+              ))}
           </div>
         </div>
         <Icons.Share className={styles.shareIcon} />
