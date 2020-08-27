@@ -1,5 +1,5 @@
 {
-  "name": "share-this-page",
+  "name": "@saulmaldonado/share-this-page",
   "version": "1.0.0",
   "description": "Share the current page to social media with a zero-configuration drop-in React component",
   "author": "saulmaldonado",
