@@ -4,6 +4,10 @@
 
 [![NPM](https://img.shields.io/npm/v/share-button.svg)](https://www.npmjs.com/package/@saulmaldonado/share-this-page) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
+![image](./share-this-page.gif)
+
+## [Live Example](https://saulmaldonado.github.io/share-this-page/)
+
 ## Install
 
 ```bash
