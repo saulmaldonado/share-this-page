@@ -14,7 +14,14 @@ const SocialsIcon: FC<Props> = ({ link, site }) => {
   if (!Icon) return null;
 
   return (
-    <a href={link} target='_blank' rel='noopener'>
+    <a
+      href={link}
+      target='popup'
+      rel='noopener'
+      onClick={() => {
+        window.open(link, 'popup', 'width=800, height=600');
+      }}
+    >
       <Icon />
     </a>
   );
